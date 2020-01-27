@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		5B0CF50023C7A352008745CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CF4FF23C7A352008745CC /* AppDelegate.swift */; };
 		5B0CF50223C7A352008745CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CF50123C7A352008745CC /* SceneDelegate.swift */; };
-		5B0CF50423C7A352008745CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CF50323C7A352008745CC /* ViewController.swift */; };
 		5B0CF50723C7A352008745CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B0CF50523C7A352008745CC /* Main.storyboard */; };
 		5B0CF50A23C7A352008745CC /* Rapid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CF50823C7A352008745CC /* Rapid.xcdatamodeld */; };
 		5B0CF50C23C7A353008745CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B0CF50B23C7A353008745CC /* Assets.xcassets */; };
 		5B0CF50F23C7A353008745CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B0CF50D23C7A353008745CC /* LaunchScreen.storyboard */; };
 		5B0CF51A23C7A353008745CC /* RapidTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CF51923C7A353008745CC /* RapidTests.swift */; };
+		5B0CF63623CCED67008745CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CF63523CCED67008745CC /* ViewController.swift */; };
+		5B0CF63823CCEDBA008745CC /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CF63723CCEDBA008745CC /* UserProvider.swift */; };
+		5B0CF63A23CCF3C2008745CC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CF63923CCF3C2008745CC /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +33,6 @@
 		5B0CF4FC23C7A352008745CC /* Rapid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rapid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B0CF4FF23C7A352008745CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B0CF50123C7A352008745CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5B0CF50323C7A352008745CC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5B0CF50623C7A352008745CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5B0CF50923C7A352008745CC /* Rapid.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Rapid.xcdatamodel; sourceTree = "<group>"; };
 		5B0CF50B23C7A353008745CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,6 +41,9 @@
 		5B0CF51523C7A353008745CC /* RapidTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RapidTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B0CF51923C7A353008745CC /* RapidTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RapidTests.swift; sourceTree = "<group>"; };
 		5B0CF51B23C7A353008745CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B0CF63523CCED67008745CC /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5B0CF63723CCEDBA008745CC /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
+		5B0CF63923CCF3C2008745CC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,9 +85,12 @@
 		5B0CF4FE23C7A352008745CC /* Rapid */ = {
 			isa = PBXGroup;
 			children = (
+				5B0CF63423CCED67008745CC /* Controller */,
+				5B0CF62E23CCED17008745CC /* Model */,
+				5B0CF62F23CCED17008745CC /* Provider */,
+				5B0CF63023CCED17008745CC /* View */,
 				5B0CF4FF23C7A352008745CC /* AppDelegate.swift */,
 				5B0CF50123C7A352008745CC /* SceneDelegate.swift */,
-				5B0CF50323C7A352008745CC /* ViewController.swift */,
 				5B0CF50523C7A352008745CC /* Main.storyboard */,
 				5B0CF50B23C7A353008745CC /* Assets.xcassets */,
 				5B0CF50D23C7A353008745CC /* LaunchScreen.storyboard */,
@@ -100,6 +107,37 @@
 				5B0CF51B23C7A353008745CC /* Info.plist */,
 			);
 			path = RapidTests;
+			sourceTree = "<group>";
+		};
+		5B0CF62E23CCED17008745CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5B0CF63923CCF3C2008745CC /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5B0CF62F23CCED17008745CC /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				5B0CF63723CCEDBA008745CC /* UserProvider.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
+		5B0CF63023CCED17008745CC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5B0CF63423CCED67008745CC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5B0CF63523CCED67008745CC /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,10 +241,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B0CF50423C7A352008745CC /* ViewController.swift in Sources */,
 				5B0CF50023C7A352008745CC /* AppDelegate.swift in Sources */,
 				5B0CF50A23C7A352008745CC /* Rapid.xcdatamodeld in Sources */,
+				5B0CF63A23CCF3C2008745CC /* User.swift in Sources */,
+				5B0CF63623CCED67008745CC /* ViewController.swift in Sources */,
 				5B0CF50223C7A352008745CC /* SceneDelegate.swift in Sources */,
+				5B0CF63823CCEDBA008745CC /* UserProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
