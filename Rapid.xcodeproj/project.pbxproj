@@ -14,9 +14,13 @@
 		5B0CF50C23C7A353008745CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B0CF50B23C7A353008745CC /* Assets.xcassets */; };
 		5B0CF50F23C7A353008745CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B0CF50D23C7A353008745CC /* LaunchScreen.storyboard */; };
 		5B0CF51A23C7A353008745CC /* RapidTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CF51923C7A353008745CC /* RapidTests.swift */; };
-		5B0CF63623CCED67008745CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CF63523CCED67008745CC /* ViewController.swift */; };
 		5B0CF63823CCEDBA008745CC /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CF63723CCEDBA008745CC /* UserProvider.swift */; };
 		5B0CF63A23CCF3C2008745CC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CF63923CCF3C2008745CC /* User.swift */; };
+		5B8C958F244E27C500C02812 /* Network.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B8C958E244E27C500C02812 /* Network.storyboard */; };
+		5B8C9591244E2DBD00C02812 /* ConcurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C9590244E2DBD00C02812 /* ConcurrencyViewController.swift */; };
+		5B8C9593244E2DFB00C02812 /* Concurrency.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B8C9592244E2DFB00C02812 /* Concurrency.storyboard */; };
+		5BC52049242D1FEB00040443 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC52048242D1FEB00040443 /* ViewController.swift */; };
+		5BC5204D242D219900040443 /* NetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5204B242D219900040443 /* NetworkViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,9 +45,13 @@
 		5B0CF51523C7A353008745CC /* RapidTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RapidTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B0CF51923C7A353008745CC /* RapidTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RapidTests.swift; sourceTree = "<group>"; };
 		5B0CF51B23C7A353008745CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5B0CF63523CCED67008745CC /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5B0CF63723CCEDBA008745CC /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		5B0CF63923CCF3C2008745CC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5B8C958E244E27C500C02812 /* Network.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Network.storyboard; sourceTree = "<group>"; };
+		5B8C9590244E2DBD00C02812 /* ConcurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrencyViewController.swift; sourceTree = "<group>"; };
+		5B8C9592244E2DFB00C02812 /* Concurrency.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Concurrency.storyboard; sourceTree = "<group>"; };
+		5BC52048242D1FEB00040443 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5BC5204B242D219900040443 /* NetworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +93,7 @@
 		5B0CF4FE23C7A352008745CC /* Rapid */ = {
 			isa = PBXGroup;
 			children = (
-				5B0CF63423CCED67008745CC /* Controller */,
+				5BC52045242D1FEB00040443 /* Controllers */,
 				5B0CF62E23CCED17008745CC /* Model */,
 				5B0CF62F23CCED17008745CC /* Provider */,
 				5B0CF63023CCED17008745CC /* View */,
@@ -132,12 +140,80 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		5B0CF63423CCED67008745CC /* Controller */ = {
+		5BC52045242D1FEB00040443 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5B0CF63523CCED67008745CC /* ViewController.swift */,
+				5BC52047242D1FEB00040443 /* RootViewController */,
+				5BC52046242D1FEB00040443 /* NetworkConnection */,
+				5BC52054242D59E200040443 /* ConcurrencyOperations */,
+				5BC52052242D59E200040443 /* CoreDataOperations */,
+				5BC52053242D59E200040443 /* DesignPatterns */,
+				5BC5204F242D59E100040443 /* FirebaseOperations */,
+				5BC52051242D59E100040443 /* SqliteOperations */,
+				5BC52050242D59E100040443 /* UploadsDownloads */,
 			);
-			path = Controller;
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5BC52046242D1FEB00040443 /* NetworkConnection */ = {
+			isa = PBXGroup;
+			children = (
+				5BC5204B242D219900040443 /* NetworkViewController.swift */,
+				5B8C958E244E27C500C02812 /* Network.storyboard */,
+			);
+			path = NetworkConnection;
+			sourceTree = "<group>";
+		};
+		5BC52047242D1FEB00040443 /* RootViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5BC52048242D1FEB00040443 /* ViewController.swift */,
+			);
+			path = RootViewController;
+			sourceTree = "<group>";
+		};
+		5BC5204F242D59E100040443 /* FirebaseOperations */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FirebaseOperations;
+			sourceTree = "<group>";
+		};
+		5BC52050242D59E100040443 /* UploadsDownloads */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UploadsDownloads;
+			sourceTree = "<group>";
+		};
+		5BC52051242D59E100040443 /* SqliteOperations */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SqliteOperations;
+			sourceTree = "<group>";
+		};
+		5BC52052242D59E200040443 /* CoreDataOperations */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreDataOperations;
+			sourceTree = "<group>";
+		};
+		5BC52053242D59E200040443 /* DesignPatterns */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DesignPatterns;
+			sourceTree = "<group>";
+		};
+		5BC52054242D59E200040443 /* ConcurrencyOperations */ = {
+			isa = PBXGroup;
+			children = (
+				5B8C9590244E2DBD00C02812 /* ConcurrencyViewController.swift */,
+				5B8C9592244E2DFB00C02812 /* Concurrency.storyboard */,
+			);
+			path = ConcurrencyOperations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,7 +299,9 @@
 			files = (
 				5B0CF50F23C7A353008745CC /* LaunchScreen.storyboard in Resources */,
 				5B0CF50C23C7A353008745CC /* Assets.xcassets in Resources */,
+				5B8C9593244E2DFB00C02812 /* Concurrency.storyboard in Resources */,
 				5B0CF50723C7A352008745CC /* Main.storyboard in Resources */,
+				5B8C958F244E27C500C02812 /* Network.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,9 +320,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B0CF50023C7A352008745CC /* AppDelegate.swift in Sources */,
+				5BC5204D242D219900040443 /* NetworkViewController.swift in Sources */,
 				5B0CF50A23C7A352008745CC /* Rapid.xcdatamodeld in Sources */,
 				5B0CF63A23CCF3C2008745CC /* User.swift in Sources */,
-				5B0CF63623CCED67008745CC /* ViewController.swift in Sources */,
+				5B8C9591244E2DBD00C02812 /* ConcurrencyViewController.swift in Sources */,
+				5BC52049242D1FEB00040443 /* ViewController.swift in Sources */,
 				5B0CF50223C7A352008745CC /* SceneDelegate.swift in Sources */,
 				5B0CF63823CCEDBA008745CC /* UserProvider.swift in Sources */,
 			);
