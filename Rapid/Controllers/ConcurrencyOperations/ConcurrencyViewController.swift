@@ -131,7 +131,7 @@ class ConcurrencyViewController: UIViewController {
     func asyncronizedTaskInSerialQueue() {
         let serialQ = DispatchQueue(label: "AsyncronizedTaskInSerialQueue")
         serialQ.async {
-            let delayTimeLong = self?.calculateLongTime()
+            let delayTimeLong = self.calculateLongTime()
             print("Serial Async time long: \(delayTimeLong) on thread: \(Thread.current)")
         }
         serialQ.async {
