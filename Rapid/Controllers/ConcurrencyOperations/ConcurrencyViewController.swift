@@ -155,24 +155,26 @@ class ConcurrencyViewController: UIViewController {
     func dispatchGroupTask() {
         //WAY 1
         let dGroup = DispatchGroup()
-        
+
         dGroup.enter()
         let delayTimeLong = calculateLongTime()
         print("Concurrent sync time long: \(delayTimeLong) on thread: \(Thread.current)")
         dGroup.leave()
-        
+
         dGroup.enter()
         let delayTimeShort = self.calculateShortTime()
         print("Concurrent Async time short: \(delayTimeShort) on thread: \(Thread.current)")
         dGroup.leave()
-        
-        //1.1 - if we want the task to get completed to cross this line
-        //dGroup.wait()
-        
-        //1.2 - if we want just to move on and task to be notified later after completion
+
+        //1.1 - if we want just to move on and task to be notified later after completion
         dGroup.notify(queue: .main) {
             print("Both functions complete 👍")
         }
+        
+        //1.2 - Wait method will not work in this implementation - Way 1. It only works on Way 2.
+        //dGroup.wait()
+        //print("crossed wait")
+        
         
         //WAY 2
 //        let disQueue = DispatchQueue(label: "com.company.app.queue", qos: .default, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil)
@@ -192,7 +194,8 @@ class ConcurrencyViewController: UIViewController {
 //            print("#3 finished")
 //        }
 //        //2.2
-//        //disGroup.wait()
+//        disGroup.wait()
+//        print("crossed wait")
     }
     
     
