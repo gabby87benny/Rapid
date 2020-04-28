@@ -10,6 +10,8 @@ import UIKit
 
 class ConcurrencyViewController: UIViewController {
     
+    var backgroundTaskIdentifier: UIBackgroundTaskIdentifier?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -84,16 +86,6 @@ class ConcurrencyViewController: UIViewController {
         blockSelfCreatedSerialQ()
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
     //MARK: Helper
     func calculateShortTime() -> Int {
         var result = 0
@@ -139,7 +131,7 @@ class ConcurrencyViewController: UIViewController {
     func asyncronizedTaskInSerialQueue() {
         let serialQ = DispatchQueue(label: "AsyncronizedTaskInSerialQueue")
         serialQ.async {
-            let delayTimeLong = self.calculateLongTime()
+            let delayTimeLong = self?.calculateLongTime()
             print("Serial Async time long: \(delayTimeLong) on thread: \(Thread.current)")
         }
         serialQ.async {
@@ -403,14 +395,61 @@ class ConcurrencyViewController: UIViewController {
     }
     
     func dispatchSemaphore() {
+        let semaphore = DispatchSemaphore(value: 1)
+        DispatchQueue.global().async {
+           print("Kid 1 - wait")
+           semaphore.wait()
+           print("Kid 1 - wait finished")
+           sleep(1) // Kid 1 playing with iPad
+           semaphore.signal()
+           print("Kid 1 - done with iPad")
+        }
+        DispatchQueue.global().async {
+           print("Kid 2 - wait")
+           semaphore.wait()
+           print("Kid 2 - wait finished")
+           sleep(1) // Kid 1 playing with iPad
+           semaphore.signal()
+           print("Kid 2 - done with iPad")
+        }
+        DispatchQueue.global().async {
+           print("Kid 3 - wait")
+           semaphore.wait()
+           print("Kid 3 - wait finished")
+           sleep(1) // Kid 1 playing with iPad
+           semaphore.signal()
+           print("Kid 3 - done with iPad")
+        }
         
+        /*
+         let queue = DispatchQueue(label: "com.gcd.myQueue", attributes: .concurrent)
+         let semaphore = DispatchSemaphore(value: 3)
+         for i in 0 ..> 15 {
+            queue.async {
+               let songNumber = i + 1
+               semaphore.wait()
+               print("Downloading song", songNumber)
+               sleep(2) // Download take ~2 sec each
+               print("Downloaded song", songNumber)
+               semaphore.signal()
+            }
+         }
+         */
     }
     
-    //Below 2 methods will create Deadlock
+    //Below all methods will create Deadlock
     /*
-     If you call the sync function on the main queue it will block the queue as well as the queue will be waiting for the
-     task to be completed but the task will never be finished since it will not be even able to start due to the queue is
-     already blocked. It is called deadlock.
+    crashes.. REASON:
+     dispatch_sync does two things:
+     queue a block
+     blocks the current thread until the block has finished running
+     Given that the main thread is a serial queue (which means it uses only one thread), the following statement:
+     dispatch_sync(dispatch_get_main_queue(), ^(){...});
+     will cause the following events:
+     dispatch_sync queues the block in the main queue.
+     dispatch_sync blocks the thread of the main queue until the block finishes executing.
+     dispatch_sync waits forever because the thread where the block is supposed to run is blocked.
+     
      */
     func blockMainQ() {
         print("b4 sync thread now - \(Thread.current)")
@@ -431,4 +470,63 @@ class ConcurrencyViewController: UIViewController {
         }
         print("thread  - \(Thread.current)")
     }
+    
+    func deadLockCase3() {
+        print("1")
+        let globalQ = DispatchQueue.global(qos: .userInitiated)
+        globalQ.async {
+            print("2")
+        }
+        print("3")
+    }
+    
+    func deadLockCase4() {
+        print("1")
+        let globalQ = DispatchQueue.global(qos: .userInitiated)
+        globalQ.async {
+            print("2")
+            DispatchQueue.main.sync {
+                print("3")
+            }
+            print("4")
+        }
+        print("5")
+    }
+    
+    //Dispatch source
+    
+    func dispatchSourceTimerDemo() {
+        let queue = DispatchQueue(label: "com.firm.app.timer",
+                                  attributes: DispatchQueue.Attributes.concurrent)
+        let timer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: UInt(0)),
+                                                   queue: queue)
+
+        timer.schedule(deadline: .now(),
+                       repeating: .seconds(5),
+                       leeway: .seconds(1)
+        )
+        timer.setEventHandler {[weak self] in
+            print("event fired")
+        }
+        timer.resume()
+    }
+    
+    func runBackgroundTask()
+    {
+        self.backgroundTaskIdentifier = UIApplication.shared.beginBackgroundTask(expirationHandler: {
+            if let identifier = self.backgroundTaskIdentifier
+            {
+                UIApplication.shared.endBackgroundTask(identifier)
+            }
+        })
+    }
+
+    func endBackgroundTask()
+    {
+        if let identifier = self.backgroundTaskIdentifier
+        {
+            UIApplication.shared.endBackgroundTask(identifier)
+        }
+    }
+    
 }
